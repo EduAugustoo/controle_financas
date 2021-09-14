@@ -1,0 +1,30 @@
+version: "3.7"
+
+services:
+  db_financas:
+    image: postgres
+    container_name: db_financas
+    restart: always
+    ports: 
+      - 5432:5432
+    environment: 
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=dockerFinancas
+      - POSTGRES_DB=controle_financas
+    volumes: 
+      - pgdata:/data/postgres
+  app:
+    build: .
+    container_name: controle_financas
+    ports:
+      - 3333:3333
+    volumes:
+      - .:/usr/app
+    links:
+      - db_financas
+    depends_on:
+      - db_financas
+
+volumes: 
+  pgdata:
+    driver: local
