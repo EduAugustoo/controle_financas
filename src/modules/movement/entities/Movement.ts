@@ -1,3 +1,4 @@
+import { User } from "@modules/account/entities/User";
 import {
   Column,
   CreateDateColumn,
@@ -7,8 +8,6 @@ import {
   PrimaryColumn,
 } from "typeorm";
 import { v4 as uuidV4 } from "uuid";
-
-import { User } from "../../account/entities/User";
 
 @Entity("movement")
 class Movement {

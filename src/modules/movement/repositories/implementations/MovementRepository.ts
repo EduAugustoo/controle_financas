@@ -1,8 +1,7 @@
+import { IMovementDTO } from "@modules/movement/dtos/IMovementDTO";
+import { Movement } from "@modules/movement/entities/Movement";
+import { IMovementRepository } from "@modules/movement/repositories/IMovementRepository";
 import { getRepository, Repository } from "typeorm";
-
-import { IMovementDTO } from "../../dtos/IMovementDTO";
-import { Movement } from "../../entities/Movement";
-import { IMovementRepository } from "../IMovementRepository";
 
 class MovementRepository implements IMovementRepository {
   private repository: Repository<Movement>;

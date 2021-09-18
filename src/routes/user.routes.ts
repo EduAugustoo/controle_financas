@@ -1,13 +1,12 @@
+import { CreateUserController } from "@modules/account/useCases/createUser/CreateUserController";
+import { GetUserController } from "@modules/account/useCases/getUser/GetUserController";
+import { GetUsersController } from "@modules/account/useCases/getUsers/GetUsersController";
+import { CreateMovementController } from "@modules/movement/useCases/createMovement/CreateMovementController";
+import { DeleteMovementController } from "@modules/movement/useCases/deleteMovement/DeleteMovementController";
+import { EditMovementController } from "@modules/movement/useCases/editMovement/EditMovementController";
+import { GetMovementsController } from "@modules/movement/useCases/getMovements/GetMovementsController";
 import { Router } from "express";
-
-import { ensureAuthenticated } from "../middleware/ensureAuthenticated";
-import { CreateUserController } from "../modules/account/useCases/createUser/CreateUserController";
-import { GetUserController } from "../modules/account/useCases/getUser/GetUserController";
-import { GetUsersController } from "../modules/account/useCases/getUsers/GetUsersController";
-import { CreateMovementController } from "../modules/movement/useCases/createMovement/CreateMovementController";
-import { DeleteMovementController } from "../modules/movement/useCases/deleteMovement/DeleteMovementController";
-import { EditMovementController } from "../modules/movement/useCases/editMovement/EditMovementController";
-import { GetMovementsController } from "../modules/movement/useCases/getMovements/GetMovementsController";
+import { ensureAuthenticated } from "middleware/ensureAuthenticated";
 
 const userRoutes = Router();
 const createUserController = new CreateUserController();
@@ -19,8 +18,8 @@ const getMovementsController = new GetMovementsController();
 const deleteMovementController = new DeleteMovementController();
 
 userRoutes.post("/", createUserController.handle);
-userRoutes.get("/", getUsersController.handle);
-userRoutes.get("/:id", getUserController.handle);
+userRoutes.get("/", ensureAuthenticated, getUsersController.handle);
+userRoutes.get("/:id", ensureAuthenticated, getUserController.handle);
 userRoutes.post(
   "/:id/movements",
   ensureAuthenticated,

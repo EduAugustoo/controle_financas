@@ -1,8 +1,7 @@
+import { IRefreshTokenDTO } from "@modules/auth/dtos/IRefreshTokenDTO";
+import { Token } from "@modules/auth/entities/Token";
+import { IRefreshTokenRepository } from "@modules/auth/repositories/IRefreshTokenRepository";
 import { getRepository, Repository } from "typeorm";
-
-import { IRefreshTokenDTO } from "../../dtos/IRefreshTokenDTO";
-import { Token } from "../../entities/Token";
-import { IRefreshTokenRepository } from "../IRefreshTokenRepository";
 
 class RefreshTokenRepository implements IRefreshTokenRepository {
   private repository: Repository<Token>;

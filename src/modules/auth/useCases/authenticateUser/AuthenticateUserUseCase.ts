@@ -1,10 +1,9 @@
+import { AppError } from "@errors/AppError";
+import { UserRepository } from "@modules/account/repositories/implementations/UserRepository";
+import { CreateRefreshTokenUseCase } from "@modules/auth/useCases/createRefreshToken/CreateRefreshTokenUseCase";
 import { compare } from "bcrypt";
 import { sign } from "jsonwebtoken";
 import { container, inject, injectable } from "tsyringe";
-
-import { AppError } from "../../../../errors/AppError";
-import { UserRepository } from "../../../account/repositories/implementations/UserRepository";
-import { CreateRefreshTokenUseCase } from "../createRefreshToken/CreateRefreshTokenUseCase";
 
 interface IRequest {
   username: string;
@@ -14,11 +13,6 @@ interface IRequest {
 interface IResponse {
   token: string;
   refreshToken: string;
-  user: {
-    id: string;
-    name: string;
-    username: string;
-  };
 }
 
 @injectable()
@@ -43,7 +37,7 @@ class AuthenticateUserUseCase {
       "d958038874dbbd625b6548ec9bc7cee5",
       {
         subject: user.id,
-        expiresIn: "15s",
+        expiresIn: "15m",
       }
     );
 
@@ -58,11 +52,6 @@ class AuthenticateUserUseCase {
     const tokenReturn: IResponse = {
       refreshToken,
       token,
-      user: {
-        id: user.id,
-        name: user.name,
-        username: user.username,
-      },
     };
 
     return tokenReturn;

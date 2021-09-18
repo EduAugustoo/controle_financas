@@ -1,15 +1,16 @@
+import { AppError } from "@errors/AppError";
+import "@shared/container";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import express, { NextFunction, Request, Response } from "express";
 import "express-async-errors";
 import swaggerUI from "swagger-ui-express";
 
-import "./database";
-import "./shared/container";
-import { AppError } from "./errors/AppError";
+import createConnection from "./database";
 import { router } from "./routes";
 import swaggerFile from "./swagger.json";
 
+createConnection();
 const app = express();
 
 app.use(cors({ credentials: true, origin: "http://localhost:3000" }));

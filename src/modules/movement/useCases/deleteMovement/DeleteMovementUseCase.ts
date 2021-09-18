@@ -1,6 +1,5 @@
+import { IMovementRepository } from "@modules/movement/repositories/IMovementRepository";
 import { inject, injectable } from "tsyringe";
-
-import { IMovementRepository } from "../../repositories/IMovementRepository";
 
 @injectable()
 class DeleteMovementUseCase {

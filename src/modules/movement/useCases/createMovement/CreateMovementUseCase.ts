@@ -1,9 +1,8 @@
+import { AppError } from "@errors/AppError";
+import { IUserRepository } from "@modules/account/repositories/IUserRepository";
+import { Movement } from "@modules/movement/entities/Movement";
+import { IMovementRepository } from "@modules/movement/repositories/IMovementRepository";
 import { inject, injectable } from "tsyringe";
-
-import { AppError } from "../../../../errors/AppError";
-import { IUserRepository } from "../../../account/repositories/IUserRepository";
-import { Movement } from "../../entities/Movement";
-import { IMovementRepository } from "../../repositories/IMovementRepository";
 
 interface IRequest {
   name: string;

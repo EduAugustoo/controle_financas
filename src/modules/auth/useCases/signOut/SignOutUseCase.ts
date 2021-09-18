@@ -1,7 +1,6 @@
+import { TokenError } from "@errors/TokenError";
+import { IRefreshTokenRepository } from "@modules/auth/repositories/IRefreshTokenRepository";
 import { inject, injectable } from "tsyringe";
-
-import { TokenError } from "../../../../errors/TokenError";
-import { IRefreshTokenRepository } from "../../repositories/IRefreshTokenRepository";
 
 @injectable()
 class SignOutUseCase {

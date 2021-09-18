@@ -1,10 +1,9 @@
+import { config } from "@config/index";
+import { AppError } from "@errors/AppError";
+import { IUserRepository } from "@modules/account/repositories/IUserRepository";
+import { IRefreshTokenRepository } from "@modules/auth/repositories/IRefreshTokenRepository";
 import { inject, injectable } from "tsyringe";
 import { v4 as uuidV4 } from "uuid";
-
-import { config } from "../../../../config";
-import { AppError } from "../../../../errors/AppError";
-import { IUserRepository } from "../../../account/repositories/IUserRepository";
-import { IRefreshTokenRepository } from "../../repositories/IRefreshTokenRepository";
 
 interface IResponse {
   token: string;

@@ -1,7 +1,7 @@
+import { AppError } from "@errors/AppError";
 import { Request, Response } from "express";
 import { container } from "tsyringe";
 
-import { AppError } from "../../../../errors/AppError";
 import { DeleteMovementUseCase } from "./DeleteMovementUseCase";
 
 class DeleteMovementController {

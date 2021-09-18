@@ -1,5 +1,5 @@
-import { IMovementDTO } from "../dtos/IMovementDTO";
-import { Movement } from "../entities/Movement";
+import { IMovementDTO } from "@modules/movement/dtos/IMovementDTO";
+import { Movement } from "@modules/movement/entities/Movement";
 
 interface IMovementRepository {
   create(data: IMovementDTO): Promise<Movement>;

@@ -1,7 +1,6 @@
+import { IMovementDTO } from "@modules/movement/dtos/IMovementDTO";
+import { IMovementRepository } from "@modules/movement/repositories/IMovementRepository";
 import { inject, injectable } from "tsyringe";
-
-import { IMovementDTO } from "../../dtos/IMovementDTO";
-import { IMovementRepository } from "../../repositories/IMovementRepository";
 
 @injectable()
 class EditMovementUseCase {

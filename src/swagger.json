@@ -51,6 +51,9 @@
         }
       },
       "get": {
+        "security": {
+          "bearerAuth": []
+        },
         "tags": [
           "Usuário"
         ],
@@ -75,20 +78,25 @@
     },
     "/users/{id}": {
       "get": {
+        "security": {
+          "bearerAuth": []
+        },
         "tags": [
           "Usuário"
         ],
         "summary": "Retorna um usuário",
         "description": "Retorna um usuário de acordo com o ID",
-        "parameters": [{
-          "name": "id",
-          "in": "path",
-          "description": "ID do usuário",
-          "required": true,
-          "schema": {
-            "type": "string"
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID do usuário",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
-        }],
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -106,12 +114,9 @@
     "/users/{id}/movements": {
       "post": {
         "security": {
-          "bearerAuth": [
-
-          ]
+          "bearerAuth": []
         },
         "tags": [
-          "Usuário",
           "Movimentação"
         ],
         "summary": "Cria uma nova movimentação",
@@ -150,6 +155,42 @@
             "description": "Movimentação criada!"
           }
         }
+      },
+      "get": {
+        "security": {
+          "bearerAuth": []
+        },
+        "tags": [
+          "Movimentação"
+        ],
+        "summary": "Retorna as movimentações de um usuário",
+        "description": "Retorna as movimentações de um usuário de acordo com o ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID do usuário",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Movement"
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   },
@@ -177,22 +218,28 @@
           "movements": {
             "type": "array",
             "items": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "type": "string"
-                },
-                "description": {
-                  "type": "string"
-                },
-                "value": {
-                  "type": "number"
-                },
-                "created_at": {
-                  "type": "string"
-                }
-              }
+              "$ref": "#/components/schemas/Movement"
             }
+          }
+        }
+      },
+      "Movement": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "value": {
+            "type": "number"
+          },
+          "created_at": {
+            "type": "string"
           }
         }
       }

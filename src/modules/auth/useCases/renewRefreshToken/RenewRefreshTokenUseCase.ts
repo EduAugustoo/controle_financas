@@ -1,10 +1,9 @@
+import { TokenError } from "@errors/TokenError";
+import { Token } from "@modules/auth/entities/Token";
+import { IRefreshTokenRepository } from "@modules/auth/repositories/IRefreshTokenRepository";
+import { CreateRefreshTokenUseCase } from "@modules/auth/useCases/createRefreshToken/CreateRefreshTokenUseCase";
 import { sign } from "jsonwebtoken";
 import { container, inject, injectable } from "tsyringe";
-
-import { TokenError } from "../../../../errors/TokenError";
-import { Token } from "../../entities/Token";
-import { IRefreshTokenRepository } from "../../repositories/IRefreshTokenRepository";
-import { CreateRefreshTokenUseCase } from "../createRefreshToken/CreateRefreshTokenUseCase";
 
 interface IResponse {
   token: string;

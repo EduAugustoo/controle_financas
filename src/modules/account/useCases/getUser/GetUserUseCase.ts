@@ -1,8 +1,7 @@
+import { AppError } from "@errors/AppError";
+import { User } from "@modules/account/entities/User";
+import { IUserRepository } from "@modules/account/repositories/IUserRepository";
 import { inject, injectable } from "tsyringe";
-
-import { AppError } from "../../../../errors/AppError";
-import { User } from "../../entities/User";
-import { IUserRepository } from "../../repositories/IUserRepository";
 
 @injectable()
 class GetUserUseCase {

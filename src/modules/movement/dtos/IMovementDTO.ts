@@ -1,4 +1,4 @@
-import { User } from "../../account/entities/User";
+import { User } from "@modules/account/entities/User";
 
 interface IMovementDTO {
   id?: string;

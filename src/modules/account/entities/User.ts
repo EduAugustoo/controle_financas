@@ -1,7 +1,6 @@
+import { Movement } from "@modules/movement/entities/Movement";
 import { Column, Entity, OneToMany, PrimaryColumn } from "typeorm";
 import { v4 as uuidV4 } from "uuid";
-
-import { Movement } from "../../movement/entities/Movement";
 
 @Entity("user")
 class User {

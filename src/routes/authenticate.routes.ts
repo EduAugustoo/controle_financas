@@ -1,8 +1,7 @@
+import { AuthenticateUserController } from "@modules/auth/useCases/authenticateUser/AuthenticateUserController";
+import { RenewRefreshTokenController } from "@modules/auth/useCases/renewRefreshToken/RenewRefreshTokenController";
+import { SignOutController } from "@modules/auth/useCases/signOut/SignOutController";
 import { Router } from "express";
-
-import { AuthenticateUserController } from "../modules/auth/useCases/authenticateUser/AuthenticateUserController";
-import { RenewRefreshTokenController } from "../modules/auth/useCases/renewRefreshToken/RenewRefreshTokenController";
-import { SignOutController } from "../modules/auth/useCases/signOut/SignOutController";
 
 const authenticateRoutes = Router();
 const authenticateUserController = new AuthenticateUserController();
