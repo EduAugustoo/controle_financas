@@ -16,6 +16,9 @@
       "@errors/*": [
         "errors/*"
       ],
+      "@middleware/*": [
+        "middleware/*"
+      ],
     },
     "esModuleInterop": true,
     "experimentalDecorators": true,

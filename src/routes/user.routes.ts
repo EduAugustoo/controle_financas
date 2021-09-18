@@ -1,3 +1,4 @@
+import { ensureAuthenticated } from "@middleware/ensureAuthenticated";
 import { CreateUserController } from "@modules/account/useCases/createUser/CreateUserController";
 import { GetUserController } from "@modules/account/useCases/getUser/GetUserController";
 import { GetUsersController } from "@modules/account/useCases/getUsers/GetUsersController";
@@ -6,7 +7,6 @@ import { DeleteMovementController } from "@modules/movement/useCases/deleteMovem
 import { EditMovementController } from "@modules/movement/useCases/editMovement/EditMovementController";
 import { GetMovementsController } from "@modules/movement/useCases/getMovements/GetMovementsController";
 import { Router } from "express";
-import { ensureAuthenticated } from "middleware/ensureAuthenticated";
 
 const userRoutes = Router();
 const createUserController = new CreateUserController();

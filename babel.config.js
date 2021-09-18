@@ -12,6 +12,7 @@ module.exports = {
           "@config": "./src/config",
           "@shared": "./src/shared",
           "@errors": "./src/errors",
+          "@middleware": "./src/middleware",
         }
       }
     ],
