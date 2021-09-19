@@ -13,7 +13,7 @@ import swaggerFile from "./swagger.json";
 createConnection();
 const app = express();
 
-app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
+app.use(cors({ credentials: true, origin: true }));
 app.use(express.json());
 app.use(cookieParser());
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerFile));
