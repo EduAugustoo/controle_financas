@@ -7,6 +7,7 @@ import { v4 as uuidV4 } from "uuid";
 
 interface IResponse {
   token: string;
+  expiresAt: Date;
 }
 
 @injectable()
@@ -32,7 +33,7 @@ class CreateRefreshTokenUseCase {
       valid: true,
     });
 
-    return { token };
+    return { token, expiresAt };
   }
 }
 

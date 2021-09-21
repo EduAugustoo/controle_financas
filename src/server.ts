@@ -13,9 +13,15 @@ import swaggerFile from "./swagger.json";
 createConnection();
 const app = express();
 
-app.use(cors({ origin: process.env.ORIGIN_URL, credentials: true }));
-app.use(express.json());
 app.use(cookieParser());
+app.use(
+  cors({
+    origin: process.env.ORIGIN_URL,
+    credentials: true,
+    exposedHeaders: ["Set-Cookie", "Cookie"],
+  })
+);
+app.use(express.json());
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerFile));
 app.use(router);
 app.use(

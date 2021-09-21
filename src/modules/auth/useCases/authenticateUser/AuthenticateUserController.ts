@@ -13,6 +13,17 @@ class AuthenticateUserController {
       password,
     });
 
+    response.cookie("appfin.token", data.token, {
+      sameSite: "none",
+      secure: true,
+      expires: data.tokenExpiration,
+    });
+    response.cookie("appfin.refreshToken", data.refreshToken, {
+      sameSite: "none",
+      secure: true,
+      expires: data.refreshTokenExpiration,
+    });
+
     return response.json({
       token: data.token,
       refreshToken: data.refreshToken,

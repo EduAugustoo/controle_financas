@@ -1,3 +1,4 @@
+import { config } from "@config/index";
 import { AppError } from "@errors/AppError";
 import { UserRepository } from "@modules/account/repositories/implementations/UserRepository";
 import { CreateRefreshTokenUseCase } from "@modules/auth/useCases/createRefreshToken/CreateRefreshTokenUseCase";
@@ -12,7 +13,9 @@ interface IRequest {
 
 interface IResponse {
   token: string;
+  tokenExpiration: Date;
   refreshToken: string;
+  refreshTokenExpiration: Date;
 }
 
 @injectable()
@@ -41,17 +44,20 @@ class AuthenticateUserUseCase {
       }
     );
 
+    const tokenExpiration = new Date(Date.now() + config.token.duration);
+
     const createRefreshTokenUseCase = container.resolve(
       CreateRefreshTokenUseCase
     );
 
-    const { token: refreshToken } = await createRefreshTokenUseCase.execute(
-      user.id
-    );
+    const { token: refreshToken, expiresAt: refreshTokenExpiration } =
+      await createRefreshTokenUseCase.execute(user.id);
 
     const tokenReturn: IResponse = {
       refreshToken,
+      refreshTokenExpiration,
       token,
+      tokenExpiration,
     };
 
     return tokenReturn;

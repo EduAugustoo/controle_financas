@@ -1,3 +1,4 @@
+import { config } from "@config/index";
 import { TokenError } from "@errors/TokenError";
 import { Token } from "@modules/auth/entities/Token";
 import { IRefreshTokenRepository } from "@modules/auth/repositories/IRefreshTokenRepository";
@@ -7,7 +8,9 @@ import { container, inject, injectable } from "tsyringe";
 
 interface IResponse {
   token: string;
+  tokenExpiration: Date;
   refreshToken: string;
+  refreshTokenExpiration: Date;
 }
 
 @injectable()
@@ -33,11 +36,10 @@ class RenewRefreshTokenUseCase {
         CreateRefreshTokenUseCase
       );
 
-      const { token: refreshToken } = await createRefreshTokenUseCase.execute(
-        refreshTokenObject.user.id
-      );
+      const { token: refreshToken, expiresAt: refreshTokenExpiration } =
+        await createRefreshTokenUseCase.execute(refreshTokenObject.user.id);
 
-      const accesToken = sign(
+      const accessToken = sign(
         {
           id: refreshTokenObject.user.id,
           username: refreshTokenObject.user.username,
@@ -50,10 +52,15 @@ class RenewRefreshTokenUseCase {
         }
       );
 
+      const tokenExpiration = new Date(Date.now() + config.token.duration);
+
       const tokenReturn: IResponse = {
         refreshToken,
-        token: accesToken,
+        refreshTokenExpiration,
+        token: accessToken,
+        tokenExpiration,
       };
+
       return tokenReturn;
     } catch (error) {
       throw new TokenError("Problema com o token!");

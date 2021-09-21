@@ -7,6 +7,8 @@ class SignOutController {
   async handle(request: Request, response: Response): Promise<Response> {
     const signOutUseCase = container.resolve(SignOutUseCase);
     await signOutUseCase.execute(request.cookies["appfin.refreshToken"]);
+    response.clearCookie("appfin.token");
+    response.clearCookie("appfin.refreshToken");
     return response.status(200).send();
   }
 }
