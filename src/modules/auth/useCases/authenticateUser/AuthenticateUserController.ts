@@ -17,11 +17,13 @@ class AuthenticateUserController {
       sameSite: "none",
       secure: true,
       expires: data.tokenExpiration,
+      httpOnly: false,
     });
     response.cookie("appfin.refreshToken", data.refreshToken, {
       sameSite: "none",
       secure: true,
       expires: data.refreshTokenExpiration,
+      httpOnly: false,
     });
 
     return response.json({
